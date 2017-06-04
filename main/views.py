@@ -4,6 +4,7 @@ from django.template import loader
 import Crypto
 import requests
 import json
+
 from models import Person
 # Create your views here.
 def index(request):
@@ -24,6 +25,13 @@ def index(request):
 
         resp = requests.post(url, json=data,headers=headers)
         print resp
+        print Person.objects.all()
         return HttpResponse(template.render(context, request))
     else:
         return HttpResponse(template.render(context,request))
+def validate(request):
+    template = loader.get_template('validate.html')
+    context={'validate':'validate'}
+    if request.method == "POST":
+        uidhash = request.POST['uid']
+    return HttpResponse(template.render(context, request))

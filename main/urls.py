@@ -3,4 +3,5 @@ from django.contrib import admin
 from . import views
 urlpatterns = [
     url(r'^index/', views.index),
+    url(r'^validate/', views.validate),
 ]
